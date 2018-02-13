@@ -13,5 +13,21 @@ class ApplicationController < Sinatra::Base
     erb :account
   end
 
+  get '/forgot_pass' do
+    erb :forgot_pass
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  get '/signup' do
+    erb :signup
+  end
+
+  get '/feeds' do
+    erb :view_feeds
+  end
+
 
 end
