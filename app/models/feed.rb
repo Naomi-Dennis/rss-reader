@@ -7,9 +7,10 @@ class Feed < ActiveRecord::Base
   attr_accessor :articles
 
   def parse_articles
-    data = open(@url)
+    data = open(url)
     feed = RSS::Parser.parse(data)
-    items = feed.collect do | item |
+    name = feed.channel.title
+    items = feed.channel.items.collect do | item |
       new_item = {}
       new_item[:title] = item.title
       new_item[:description] = item.description

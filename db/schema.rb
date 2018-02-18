@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180218191242) do
 
-  create_table "feed", force: :cascade do |t|
+  create_table "feeds", force: :cascade do |t|
     t.string "url"
     t.integer "user_id"
     t.string "name"

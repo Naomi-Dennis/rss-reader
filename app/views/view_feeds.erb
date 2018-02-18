@@ -1,19 +1,11 @@
 <h2> Feeds </h2>
-<p>Welcome!</p>
-<a href="">My Account</a>
-<br/>
-<br/>
-<ul>
-<li>Add Feed</li>
-<li>Delete Feeds</li>
-<li>Manage Feeds</li>
 
-</ul>
-
-<ul>
-  <li>Feed</li>
-  <li>Feed</li>
-  <li>Feed</li>
-  <li>Feed</li>
-  <li>Feed</li>
-</ul>
+<% @articles.each do | article | %>
+  <div class="">
+    <h4 class=""><%= article[:title] %></h4>
+    <p class=""><%= @feed_name %></p>
+    <p class=""><%= article[:description] %></p>
+    <p class=""><%= article[:date] %></p>
+    <a href=""><%= article[:link] %></a>
+  </div>
+<% end %>
