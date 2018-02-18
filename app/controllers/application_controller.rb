@@ -5,6 +5,8 @@ class ApplicationController < Sinatra::Base
   enable :sessions
   # use Rake::Flash
 
+
+## Get Requests
   get '/' do
     @current_user = User.getLoggedUser(session[:id])
     erb :index
@@ -35,5 +37,17 @@ class ApplicationController < Sinatra::Base
     erb :view_feeds
   end
 
+## Post/Fetch/Delete/etc Request
+
+  post '/login' do
+    logged_user = User.find_by(username: params['username'], password: params['password'])
+    if logged_user.nil?
+      redirect '/login'
+    else
+      session[:id] = logged_user.id
+      redirect '/home'
+    end
+
+  end
 
 end
