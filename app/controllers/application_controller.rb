@@ -1,9 +1,11 @@
+require 'sinatra'
+require 'sinatra/flash'
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :session_secret, "my_application_secret"
   set :views, Proc.new { File.join(root, "../views/") }
   enable :sessions
-  #use Rack::Flash
+  register Sinatra::Flash
 
 
 ## Get Requests
@@ -42,10 +44,12 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     logged_user = User.find_by(username: params['username'], password: params['password'])
     if logged_user.nil?
+      flash[:message] = "Username or Password Not Found"
       redirect '/login'
     else
       session[:id] = logged_user.id
-      redirect '/home'
+      binding.pry
+      redirect '/'
     end
   end
 end

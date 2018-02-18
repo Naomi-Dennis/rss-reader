@@ -8,6 +8,8 @@ ActiveRecord::Base.establish_connection(
   :database => "db/rss#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+require 'sinatra'
+require 'sinatra/flash'
 require_relative "../app/controllers/application_controller.rb"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}

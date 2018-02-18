@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   def self.getLoggedUser(session)
     if isLoggedIn?(session)
-      User.find_by(id: session[:id])
+      User.find_by(id: session)
     else
       nil
     end
