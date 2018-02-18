@@ -52,4 +52,21 @@ class ApplicationController < Sinatra::Base
       redirect '/'
     end
   end
+
+  post '/signup' do
+    name = params[:username]
+    pass = params[:password]
+    email = params[:email]
+    if !User.find_by(email: email).nil?
+      flash[:message] = "Email already registered"
+      redirect '/signup'
+    elsif !User.find_by(username: name).nil?
+      flash[:message] = "Username taken"
+      redirect '/signup'
+    else
+      new_user = User.create(username: name, password: password, email:email)
+      session[:id] = new_user.id
+      redirect '/'
+    end
+  end
 end
