@@ -1,42 +1,78 @@
 require 'sinatra'
 require 'sinatra/flash'
+require 'rss'
+require 'open-uri'
+require "net/http"
 class ApplicationController < Sinatra::Base
+
   register Sinatra::ActiveRecordExtension
+  register Sinatra::Flash
+
   set :session_secret, "my_application_secret"
   set :views, Proc.new { File.join(root, "../views/") }
   enable :sessions
-  register Sinatra::Flash
-
 
 ## Get Requests
   get '/' do
     @current_user = User.getLoggedUser(session[:id])
-    erb :index
+    if !@current_user.nil?
+      redirect '/feeds'
+    else
+      erb :index
+    end
   end
 
   get '/account' do
     @current_user = User.getLoggedUser(session[:id])
-    erb :account
+    if !@current_user.nil?
+      erb :account
+    else
+      flash[:message] = "You are not logged in."
+      redirect '/login'
+    end
   end
 
   get '/forgot_pass' do
   @current_user = User.getLoggedUser(session[:id])
-    erb :forgot_pass
+    if !@current_user.nil?
+      redirect '/feeds'
+    else
+      erb :forgot_pass
+    end
   end
 
   get '/login' do
   @current_user = User.getLoggedUser(session[:id])
-    erb :login
+    if !@current_user.nil?
+      redirect '/feeds'
+    else
+      erb :login
+    end
   end
 
   get '/signup' do
     @current_user = User.getLoggedUser(session[:id])
-    erb :signup
+    if !@current_user.nil?
+      redirect '/feeds'
+    else
+      erb :signup
+    end
+  end
+
+  get '/signout' do
+    session.clear
+    flash[:message] = "Sucessfully logged out."
+    redirect '/'
   end
 
   get '/feeds' do
-  @current_user = User.getLoggedUser(session[:id])
-    erb :view_feeds
+    @current_user = User.getLoggedUser(session[:id])
+    if !@current_user.nil?
+      erb :view_feeds
+    else
+      flash[:message] = "You are not logged in."
+      redirect '/login'
+    end
   end
 
 ## Post/Fetch/Delete/etc Request
@@ -69,9 +105,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/signout' do
-    session.clear
-    flash[:message] = "Sucessfully logged out."
-    redirect '/'
+  post '/process_feeds' do
+    url = params[:feed]
+    data = open(url)
+    feed = RSS::Parser.parse(data)
+    binding.pry
   end
+
 end

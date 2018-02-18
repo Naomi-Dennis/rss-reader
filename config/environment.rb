@@ -10,6 +10,9 @@ ActiveRecord::Base.establish_connection(
 
 require 'sinatra'
 require 'sinatra/flash'
+require 'open-uri'
+require "net/http"
+require 'rss'
 require_relative "../app/controllers/application_controller.rb"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}

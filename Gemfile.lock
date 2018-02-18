@@ -37,6 +37,7 @@ GEM
     mustermann (1.0.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    open_uri_redirections (0.2.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -105,6 +106,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   capybara
+  open_uri_redirections
   pry
   rack-test
   rake

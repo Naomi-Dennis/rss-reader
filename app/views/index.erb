@@ -3,8 +3,8 @@
   <p><%= flash[:message] %></p>
 <% end %>
 <div class="face">
-  <form method="post" action="">
-  <input type="text" size="100"  placeholder="Enter feed link" name="rss_catcher" />
+  <form method="post" action="/process_feeds">
+  <input type="text" size="100"  placeholder="Enter feed link" name="feed" />
   <br/><br/>
   <input type="submit" name="submit" value="Read Feed" />
 </form>
