@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
   set :session_secret, "my_application_secret"
   set :views, Proc.new { File.join(root, "../views/") }
   enable :sessions
-  # use Rake::Flash
+  #use Rack::Flash
 
 
 ## Get Requests
@@ -47,7 +47,5 @@ class ApplicationController < Sinatra::Base
       session[:id] = logged_user.id
       redirect '/home'
     end
-
   end
-
 end
