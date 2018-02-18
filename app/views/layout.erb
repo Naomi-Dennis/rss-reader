@@ -16,13 +16,14 @@
   <div class="">
     <nav>
       <ul>
-        if !@current_user.nil?
-          <li> <a href="">Log in</a> </li>
-          <li> <a href="">Sign up</a></li>
-        else
-          <li><a href="">Account Details</a></li>
+      <%  if @current_user.nil? %>
+          <li> <a href="/">Home</a> </li>
+          <li> <a href="/login">Log in</a> </li>
+          <li> <a href="/signup">Sign up</a></li>
+      <%  else %>
+          <li><a href="/account">Account Details</a></li>
           <li><a href="">Edit Feed</a></li>
-        end
+      <%  end %>
       </ul>
 
     </nav>
