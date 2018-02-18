@@ -16,9 +16,15 @@
   <div class="">
     <nav>
       <ul>
-        <li> <a href="">Log in</a> </li>
-        <li> <a href="">Sign up</a></li>
+        if !@current_user.nil?
+          <li> <a href="">Log in</a> </li>
+          <li> <a href="">Sign up</a></li>
+        else
+          <li><a href="">Account Details</a></li>
+          <li><a href="">Edit Feed</a></li>
+        end
       </ul>
+
     </nav>
   </div>
   <%= yield %>
