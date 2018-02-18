@@ -104,6 +104,16 @@ class ApplicationController < Sinatra::Base
 
   post '/process_feeds' do
     url = params[:feed]
+    added_user_feed = Feed.find_by(url: url)
+    added_user_feed = Feed.create(url: url) if added_user_feed.nil?
+    user = User.find_by(id: session[:id])
+    if !user.feeds.include?(added_user_feed)
+      user.feeds << added_user_feed
+    else
+      flash[:message] = "#{added_user_feed.name} is already in your feeds."
+    end
+    redirect '/view_feeds'
+
   end
 
 end
