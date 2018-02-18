@@ -1,4 +1,7 @@
 <h1>Keep it Simple -- RSS Reader</h1>
+<% if flash.key?("message") %>
+  <p><%= flash[:message] %></p>
+<% end %>
 <div class="face">
   <form method="post" action="">
   <input type="text" size="100"  placeholder="Enter feed link" name="rss_catcher" />

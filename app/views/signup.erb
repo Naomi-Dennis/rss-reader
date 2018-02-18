@@ -1,4 +1,7 @@
 <h2>Sign up</h2>
+<% if flash.has_key?(:message) %>
+  <p><%= flash[:message] %></p>
+<% end %>
 <form action="/signup" method="post">
   <input type="text" placeholder="Username" name="username" required><br/><br/>
   <input type="password" placeholder="Password" name="password"  required><br/><br/>

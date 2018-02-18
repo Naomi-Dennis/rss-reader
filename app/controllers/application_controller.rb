@@ -48,14 +48,13 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     else
       session[:id] = logged_user.id
-      binding.pry
       redirect '/'
     end
   end
 
   post '/signup' do
     name = params[:username]
-    pass = params[:password]
+    password = params[:password]
     email = params[:email]
     if !User.find_by(email: email).nil?
       flash[:message] = "Email already registered"
@@ -68,5 +67,11 @@ class ApplicationController < Sinatra::Base
       session[:id] = new_user.id
       redirect '/'
     end
+  end
+
+  get '/signout' do
+    session.clear
+    flash[:message] = "Sucessfully logged out."
+    redirect '/'
   end
 end
