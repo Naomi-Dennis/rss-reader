@@ -6,9 +6,7 @@ class ApplicationController < Sinatra::Base
   # use Rake::Flash
 
   get '/' do
-
     @current_user = User.getLoggedUser(session[:id])
-      binding.pry
     erb :index
   end
 
