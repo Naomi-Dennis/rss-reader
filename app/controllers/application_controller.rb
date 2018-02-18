@@ -1,8 +1,5 @@
 require 'sinatra'
 require 'sinatra/flash'
-require 'rss'
-require 'open-uri'
-require "net/http"
 class ApplicationController < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
@@ -107,9 +104,6 @@ class ApplicationController < Sinatra::Base
 
   post '/process_feeds' do
     url = params[:feed]
-    data = open(url)
-    feed = RSS::Parser.parse(data)
-    binding.pry
   end
 
 end

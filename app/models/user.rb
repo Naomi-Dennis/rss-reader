@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :feeds
   def self.isLoggedIn?(session)
     !session.nil?
   end
