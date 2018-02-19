@@ -3,9 +3,13 @@
 <% @articles.each do | article | %>
   <div class="">
     <h4 class=""><%= article[:title] %></h4>
+    <%= article.image %>
+    <br/>
     <p class=""><%= @feed_name %></p>
     <p class=""><%= article[:description] %></p>
     <p class=""><%= article[:date] %></p>
     <a href=""><%= article[:link] %></a>
+
   </div>
+      <br/>
 <% end %>

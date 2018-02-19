@@ -67,7 +67,6 @@ class ApplicationController < Sinatra::Base
       @feeds = @current_user.feeds
       @articles = @feeds[0].articles
       @feed_name = @feeds[0].name
-      binding.pry
       erb :view_feeds
     else
       flash[:message] = "You are not logged in."
@@ -107,19 +106,19 @@ class ApplicationController < Sinatra::Base
 
   post '/process_feeds' do
     url = params[:feed]
-    added_user_feed = Feed.find_by(url: url)
-     if added_user_feed.nil?
+    # added_user_feed = Feed.find_by(url: url)
+    #  if added_user_feed.nil?
       added_user_feed = Feed.create(url: url)
-      added_user_feed.parse_articles
+      added_user_feed.articles << added_user_feed.parse_articles
       added_user_feed.save
-    end
+    # end
     user = User.find_by(id: session[:id])
-    if !user.feeds.include?(added_user_feed)
+    # if !user.feeds.include?(added_user_feed)
       user.feeds << added_user_feed
       user.save
-    else
-      flash[:message] = "#{added_user_feed.name} is already in your feeds."
-    end
+    # else
+    #   flash[:message] = "#{added_user_feed.name} is already in your feeds."
+    # end
     redirect '/feeds'
   end
 
