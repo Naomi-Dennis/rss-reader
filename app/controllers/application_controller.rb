@@ -79,6 +79,18 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/delete_feed' do
+    @current_user = User.getLoggedUser(session[:id])
+    if !@current_user.nil?
+        @feeds = @current_user.feeds
+        erb :remove_feed
+    else
+      flash[:message] = "You are not logged in."
+      redirect '/login'
+    end
+
+  end
+
 ## Post/Fetch/Delete/etc Request
 
   post '/login' do
@@ -119,7 +131,6 @@ class ApplicationController < Sinatra::Base
         added_user_feed.updateFeed
      end
     added_user_feed.save
-    binding.pry
     user = User.find_by(id: session[:id])
      if !user.feeds.include?(added_user_feed)
        user.feeds << added_user_feed
@@ -127,6 +138,16 @@ class ApplicationController < Sinatra::Base
      else
        flash[:message] = "#{added_user_feed.name} is already in your feeds."
      end
+    redirect '/feeds'
+  end
+
+  post '/remove_feeds' do
+    feeds = params["selected_feeds"]
+    @current_user = User.getLoggedUser(session[:id])
+    @current_user.feeds = @current_user.feeds.reject do | feed |
+      feeds.include?(feed.id.to_s)
+    end
+    binding.pry
     redirect '/feeds'
   end
 

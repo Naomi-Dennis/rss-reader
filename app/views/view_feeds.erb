@@ -7,6 +7,9 @@
     <%= item.image %>
     <br/>
     <p class=""><%= article[:name] %></p>
+    <% if item[:description].empty? %>
+    <%  item[:description] = "No Description" %>
+    <% end %>
     <p class=""><%= item[:description] %></p>
     <p class=""><%= item[:date].to_s.split(" ").slice(0,4).join(" ") %></p>
     <a href="<%=item[:link]%>">Read More</a>
