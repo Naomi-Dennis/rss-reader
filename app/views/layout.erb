@@ -22,9 +22,10 @@
           <li> <a href="/signup">Sign up</a></li>
       <%  else %>
           <li><span>Hello, <%= @current_user.username %></span></li>
-          <li><a href="/account">Account Details</a></li>
-          <li><a href="">Edit Feed</a></li>
-          <li><a href="/signout">Sign out</a></li>
+            <li><a href="/view_feeds">My Feed</a></li>
+            <li><a href="">Edit Feed</a></li>
+            <li><a href="/account">Account Details</a></li>
+            <li><a href="/signout">Sign out</a></li>
       <%  end %>
       </ul>
 
