@@ -12,11 +12,11 @@ class ApplicationController < Sinatra::Base
 ## Get Requests
   get '/' do
     @current_user = User.getLoggedUser(session[:id])
-  #  if !@current_user.nil?
+    if !@current_user.nil?
     #  redirect '/feeds'
     #else
       erb :index
-  #  end
+    end
   end
 
   get '/account' do
@@ -40,10 +40,11 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
   @current_user = User.getLoggedUser(session[:id])
-  #  if !@current_user.nil?
-      #redirect '/feeds'
+    if !@current_user.nil?
+      redirect '/feeds'
+    else
       erb :login
-  #  end
+    end
   end
 
   get '/signup' do
@@ -64,9 +65,13 @@ class ApplicationController < Sinatra::Base
   get '/feeds' do
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
+      @current_user.updateFeeds
       @feeds = @current_user.feeds
-      @articles = @feeds[0].articles
-      @feed_name = @feeds[0].name
+      @articles = []
+      @feeds.each do | feed |
+        item = {:name => feed.name, :articles => [feed.articles[0], feed.articles[1] ] }
+        @articles << item
+      end
       erb :view_feeds
     else
       flash[:message] = "You are not logged in."
@@ -106,19 +111,22 @@ class ApplicationController < Sinatra::Base
 
   post '/process_feeds' do
     url = params[:feed]
-    # added_user_feed = Feed.find_by(url: url)
-    #  if added_user_feed.nil?
+    added_user_feed = Feed.find_by(url: url)
+    if added_user_feed.nil?
       added_user_feed = Feed.create(url: url)
       added_user_feed.articles << added_user_feed.parse_articles
-      added_user_feed.save
-    # end
+    else
+        added_user_feed.updateFeed
+     end
+    added_user_feed.save
+    binding.pry
     user = User.find_by(id: session[:id])
-    # if !user.feeds.include?(added_user_feed)
-      user.feeds << added_user_feed
-      user.save
-    # else
-    #   flash[:message] = "#{added_user_feed.name} is already in your feeds."
-    # end
+     if !user.feeds.include?(added_user_feed)
+       user.feeds << added_user_feed
+        user.save
+     else
+       flash[:message] = "#{added_user_feed.name} is already in your feeds."
+     end
     redirect '/feeds'
   end
 

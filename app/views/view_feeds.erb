@@ -1,15 +1,16 @@
 <h2> Feeds </h2>
 
 <% @articles.each do | article | %>
+  <% article[:articles].each do | item | %>
   <div class="">
-    <h4 class=""><%= article[:title] %></h4>
-    <%= article.image %>
+    <h4 class=""><%= item[:title] %></h4>
+    <%= item.image %>
     <br/>
-    <p class=""><%= @feed_name %></p>
-    <p class=""><%= article[:description] %></p>
-    <p class=""><%= article[:date] %></p>
-    <a href=""><%= article[:link] %></a>
-
+    <p class=""><%= article[:name] %></p>
+    <p class=""><%= item[:description] %></p>
+    <p class=""><%= item[:date].to_s.split(" ").slice(0,4).join(" ") %></p>
+    <a href="<%=item[:link]%>">Read More</a>
   </div>
-      <br/>
+  <%  end %>
+    <br/>
 <% end %>

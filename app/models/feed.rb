@@ -5,10 +5,25 @@ class Feed < ActiveRecord::Base
   belongs_to :user
   has_many :articles
 
+
+
+  def isTodaysFeed?
+    feed_date = Date.rfc2822( articles[0].date )
+    todays_date = Date.today
+    feed_date == todays_date
+  end
+
+  def updateFeed
+    if !self.isTodaysFeed?
+      articles.clear
+      articles << self.parse_articles
+    end
+  end
+
   def parse_articles
     data = open(url)
     feed = RSS::Parser.parse(data)
-    name = feed.channel.title
+    self[:name] = feed.channel.title
     feed.channel.items.collect do | item |
       image_data = item.description.split(">")
       item.description = image_data[1]

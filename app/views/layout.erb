@@ -22,8 +22,12 @@
           <li> <a href="/signup">Sign up</a></li>
       <%  else %>
           <li><span>Hello, <%= @current_user.username %></span></li>
-            <li><a href="/view_feeds">My Feed</a></li>
-            <li><a href="">Edit Feed</a></li>
+            <li><a href="/feeds">My Feed</a></li>
+            <li><span>Edit Feed</span></li>
+            <ul>
+              <li><a href="/">Add Feed</a></li>
+              <li><a href="">Remove Feed</a></li>
+            </ul>
             <li><a href="/account">Account Details</a></li>
             <li><a href="/signout">Sign out</a></li>
       <%  end %>
