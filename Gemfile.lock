@@ -113,7 +113,7 @@ DEPENDENCIES
   require_all
   rspec
   shotgun
-  sinatra
+  sinatra (~> 2.0.1)
   sinatra-activerecord
   sinatra-flash
   sinatra-twitter-bootstrap

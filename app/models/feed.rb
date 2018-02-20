@@ -25,10 +25,15 @@ class Feed < ActiveRecord::Base
     feed = RSS::Parser.parse(data)
     self[:name] = feed.channel.title
     feed.channel.items.collect do | item |
-      image_data = item.description.split(">")
-      item.description = image_data[1]
-      image_data = image_data[0] + ">"
-      new_article = Article.create(title: item.title, description: item.description, image: image_data, link: item.link, date: item.date)
+      if item.description.test(/<img/)
+        image_data = item.description.split(">")
+        item.description = image_data[1]
+        image_data = image_data[0] + ">"
+        image_data.insert(image_data.index('class') + 'class='.size, 'img-thumbnail')
+        new_article = Article.create(title: item.title, description: item.description, image: image_data, link: item.link, date: item.date)
+      else
+        new_article = Article.create(title: item.title, description: item.description, image: image_data, link: item.link, date: item.date)
+      end
       new_article
     end
   end
