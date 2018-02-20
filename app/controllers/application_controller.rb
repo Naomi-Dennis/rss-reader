@@ -12,11 +12,7 @@ class ApplicationController < Sinatra::Base
 ## Get Requests
   get '/' do
     @current_user = User.getLoggedUser(session[:id])
-    if !@current_user.nil?
-    #  redirect '/feeds'
-    #else
       erb :index
-    end
   end
 
   get '/account' do
