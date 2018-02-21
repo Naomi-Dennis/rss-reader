@@ -28,7 +28,7 @@
       <img src='https://static.pexels.com/photos/61109/pexels-photo-61109.jpeg' style="width:100%;height:100%;"/>
     </div>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark nav-custom">
      <!-- Brand -->
      <% if !@current_user.nil? %>
      <a class="navbar-brand" href="/">RSS Reader</a>
@@ -58,7 +58,7 @@
        </li>
      </ul>
      <% else %>
-      <a class="navbar-brand" href="/">RSS Reader</a>
+      <a class="navbar-brand" href="/">Simplicity</a>
      <ul class="navbar-nav">
        <li class="nav-item">
          <a class="nav-link" href="/login">Log In</a>
