@@ -11,11 +11,19 @@ class ApplicationController < Sinatra::Base
 
 ## Get Requests
   get '/' do
+    # The home page.
+    # On this page, any user, including those unregistered can create a feed.
+    # Only registered users will be able to save their feeds.
     @current_user = User.getLoggedUser(session[:id])
       erb :index
   end
 
   get '/account' do
+    # Shows account details of the logged in user.
+    # Note, if the user is not logged in; they won't be able to view the page and will be redirected.
+    # If the user is logged in; they will only be able to view their own account details.
+    # There is no way to view another's unless some vulnerability is found where a malicious person can change the
+    # @current_user local variable.
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       erb :account
@@ -26,6 +34,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/forgot_pass' do
+    # The forget password page.
+    # The user will be forced to change their password.
+    # DO NOT SEND THEM THEIR PASSWORD AS PLAIN TEXT!
+    # This is a security vulnerability and can be exploited.
+    # Always store a hash. Remmeber, Sony 2012!!!
   @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       redirect '/feeds'
@@ -35,6 +48,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
+    # The login page. If the user tries to view this page while logged in, they will be redirected to their
+    # feeds page.
   @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       redirect '/feeds'
@@ -44,6 +59,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
+    # The sign up page.
+    # Look for a safer way to do this. ************* DELETE
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       redirect '/feeds'
@@ -53,12 +70,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signout' do
+    # The sign out page.
+    # Search a safer way to do this ************* DELETE
     session.clear
     flash[:message] = "Sucessfully logged out."
     redirect '/'
   end
 
   get '/feeds' do
+    # The feeds page.
+    # Future update: Allow the user to view all articles in all feeds by the endless page.. functionality thing. ****** DELETE
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       @current_user.updateFeeds
@@ -76,6 +97,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/delete_feed' do
+
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
         @feeds = @current_user.feeds
@@ -101,6 +123,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
+    # Find ways to secure this page. ******* DELETE
     name = params[:username]
     password = params[:password]
     email = params[:email]
@@ -118,6 +141,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/process_feeds' do
+    # Processes feeds by saving each article as an article object and assigning it to a Feed object.
+    # The feed is then assigned to the user.
+    # NOTE: A user can have multiple feeds and feeds can have multiple users.
+    # An article can only have ONE FEED
     url = params[:feed]
     added_user_feed = Feed.find_by(url: url)
     if added_user_feed.nil?
@@ -138,12 +165,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/remove_feeds' do
+    # Removes a certain feed from the user's feed list.
     feeds = params["selected_feeds"]
     @current_user = User.getLoggedUser(session[:id])
     @current_user.feeds = @current_user.feeds.reject do | feed |
       feeds.include?(feed.id.to_s)
     end
-    binding.pry
     redirect '/feeds'
   end
 

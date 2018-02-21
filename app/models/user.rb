@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :feeds
+  has_many :user_feed
+  has_many :feeds, through: :user_feed
 
   def updateFeeds
     feeds.each do | feed |

@@ -2,7 +2,9 @@ require 'open-uri'
 require "net/http"
 require 'rss'
 class Feed < ActiveRecord::Base
-  belongs_to :user
+  has_many :user_feed
+  has_many :users, through: :user_feed
+
   has_many :articles
 
 
