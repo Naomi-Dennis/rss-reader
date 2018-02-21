@@ -12,7 +12,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
  <![endif]-->
 </head>
-<body  class="">
+<body  class="black-bkgrnd">
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS
          You need all this! All the thangs!
@@ -28,7 +28,7 @@
       <img src='https://static.pexels.com/photos/61109/pexels-photo-61109.jpeg' style="width:100%;height:100%;"/>
     </div>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark nav-custom">
+    <nav class="navbar navbar-expand-sm nav-custom">
      <!-- Brand -->
      <% if !@current_user.nil? %>
      <a class="navbar-brand" href="/">RSS Reader</a>
@@ -75,7 +75,7 @@
    <%= yield %>
 
 
-     <div class="footer black-bkgrnd shadow-bkgrnd">
+     <div class="footer">
        <p style="color: lightgray; position: absolute; right:0;">&copy;RSS Reader -- Naomi Dennis -- Flatiron Project 2018</p>
      </div>
 </div>

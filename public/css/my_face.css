@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Calligraffitti');
+html{
+
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+}
 .gray-bkgrnd{
   background: rgba(255,255,255,1);
   background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
@@ -18,14 +29,27 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
 }
 .footer{
   position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  font-family: 'Calligraffitti', cursive;
 }
 
 .nav-custom{
-  font-family: 'Courier New'
+  font-family: 'Calligraffitti', cursive;
+  background: transparent !important;
+  color:white;
+}
+.nav-custom a:active{
+  font-family: 'Calligraffitti', cursive;
+  background: transparent !important;
+  color:white;
+}
+.nav-custom a:visited{
+  font-family: 'Calligraffitti', cursive;
+  background: transparent !important;
+  color:white;
 }
 
 #bkgrnd-image{
