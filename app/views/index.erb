@@ -1,11 +1,23 @@
-<h1>Keep it Simple -- RSS Reader</h1>
-<% if flash.key?("message") %>
-  <p><%= flash[:message] %></p>
-<% end %>
-<div class="face">
-  <form method="post" action="/process_feeds">
-  <input type="text" size="100"  placeholder="Enter feed link" name="feed" />
-  <br/><br/>
-  <input type="submit" name="submit" value="Read Feed" />
-</form>
+
+
+<div class="container">
+  <div class="row">
+    <div col="col">
+    </div>
+    <div class="col text-center">
+      <br/>
+        <h1>Keep it Simple -- RSS Reader</h1>
+        <br/>
+        <% if flash.key?("message") %>
+          <p><%= flash[:message] %></p>
+        <% end %>
+        <form method="post" action="/process_feeds">
+        <input type="text" size="100" style='text-align:center;'  placeholder="Enter feed link" name="feed" />
+        <br/><br/>
+        <input type="submit" name="submit" value="Open Feed" />
+      </form>
+    </div>
+    <div col="col">
+    </div>
+  </div>
 </div>
