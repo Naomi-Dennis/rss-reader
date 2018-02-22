@@ -24,14 +24,14 @@
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Navigation Bar -->
-    <div id='bkgrnd-image'>
+    <div id='bkgrnd-image' class="center-me">
       <img src='https://static.pexels.com/photos/61109/pexels-photo-61109.jpeg' style="width:100%;height:100%;"/>
     </div>
 
-    <nav class="navbar navbar-expand-sm nav-custom">
+    <nav class="navbar navbar-expand-sm nav-custom center-me">
      <!-- Brand -->
      <% if !@current_user.nil? %>
-     <a class="navbar-brand" href="/">RSS Reader</a>
+     <a class="navbar-brand no-hand" href="">RSS Reader</a>
       <ul class="navbar-nav">
 
        <li class="nav-item">
@@ -75,6 +75,14 @@
    <%= yield %>
 
 
+
+<!--     <div class="multiple_page_div" style="background:green;">
+     </div>
+     <div class="multiple_page_div" style="background:purple;">
+     </div>
+     <div class="multiple_page_div" style="background:orange;">
+     </div>
+   -->
      <div class="footer">
        <p style="color: lightgray; position: absolute; right:0;">&copy;RSS Reader -- Naomi Dennis -- Flatiron Project 2018</p>
      </div>

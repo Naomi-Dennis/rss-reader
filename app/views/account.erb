@@ -1,12 +1,22 @@
-<h2>Account</h2>
-<div id="face">
-  <form>
-    <p tooltip="Email -- admin@rss.com to change your username">Username: cdosrun01<p>
-    Password: <input type="password" name="mah_pass" placeholder="Password" /><br/><br/>
-    Email: <input type="email" name="mah_email" placeholder="Email" /><br/>
-    <br/><br/><br/><br/>
-    Enter password to save changes:
-    <input type="password" name="confirm" /><br/>
-    <input type="submit" name="sbumit" value="Submit Changes" />
-  </form>
+<div class="container text-center text-white">
+<div class="row">
+  <div class="col">
+
+  </div>
+  <div class="col">
+    <h2 class="custom-header">Account</h2>
+    <div id="face">
+      <form>
+        <p tooltip="Email -- admin@rss.com to change your username">Username: cdosrun01<p>
+        <input type="password" name="mah_pass" placeholder="Password"  /><br/><br/>
+         <input type="email" name="mah_email" placeholder="Email" value="<%= @current_user.email %>"/><br/>
+        <br/><br/><br/><br/><br/><br/>
+        <input type="password" placeholder="Enter password to save changes" name="confirm" style="width:250px;" /><br/><br/>
+        <input type="submit" name="sbumit" value="Submit Changes" />
+      </form>
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
 </div>

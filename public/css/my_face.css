@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Calligraffitti');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 html{
 
   width: 100%;
@@ -8,6 +9,11 @@ html{
 body{
   width: 100%;
   height: 100%;
+}
+.custom-header{
+  font-family: 'Lobster', cursive;
+  font-size:60px;
+  color:white;
 }
 .gray-bkgrnd{
   background: rgba(255,255,255,1);
@@ -19,8 +25,12 @@ body{
   background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb', GradientType=1 );
 }
+.border{
+  border-style: 1px solid black;
+}
 .black-bkgrnd{
   background: black;
+
 }
 .shadow-bkgrnd{
   -webkit-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
@@ -30,12 +40,34 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
 .footer{
   position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
   height: 50px;
   font-family: 'Calligraffitti', cursive;
 }
+.article-link{
+  left: 15px;
+  display:inline;
+  color: darkgray;
+}
 
+.article-link:active{
+  display:inline;
+  color: darkgray;
+}
+
+.article-date *{
+  text-decoration: none;
+}
+.article-link a{
+  display:inline;
+}
+.article-date{
+  display:inline;
+}
+.article-date p{
+  position: absolute;
+  left: 20px;
+}
 .nav-custom{
   font-family: 'Calligraffitti', cursive;
   background: transparent !important;
@@ -50,11 +82,59 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
   font-family: 'Calligraffitti', cursive;
   background: transparent !important;
   color:white;
+  position: absolute;
+  width: 980px;
 }
 
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+.no-hand{
+  cursor: pointer;
+}
 #bkgrnd-image{
   height: 100%;
   width: 100%;
   position: absolute;
-  opacity: 0.7;
+}
+
+.multiple_page_div{
+  height: 550px;
+  width: 100%
+}
+
+input[type="text"] {
+    height: 35px;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    text-align: center;
+}
+
+input[type="password"] {
+    height: 35px;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    text-align: center;
+}
+input[type="email"] {
+    height: 35px;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    text-align: center;
 }

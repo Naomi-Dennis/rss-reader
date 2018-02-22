@@ -10,9 +10,11 @@ class Feed < ActiveRecord::Base
 
 
   def isTodaysFeed?
+    if !articles.empty?
     feed_date = Date.rfc2822( articles[0].date )
     todays_date = Date.today
     feed_date == todays_date
+  end
   end
 
   def updateFeed
@@ -27,7 +29,7 @@ class Feed < ActiveRecord::Base
     feed = RSS::Parser.parse(data)
     self[:name] = feed.channel.title
     feed.channel.items.collect do | item |
-      if item.description.test(/<img/)
+      if /<img/.match(item.description)
         image_data = item.description.split(">")
         item.description = image_data[1]
         image_data = image_data[0] + ">"
