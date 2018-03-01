@@ -50,16 +50,15 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
   color: darkgray;
 }
 
-.article-link:active{
+.article-link{
   display:inline;
-  color: darkgray;
+  right: 0;
 }
 
 .article-date *{
   text-decoration: none;
 }
 .article-link a{
-  display:inline;
 }
 .article-date{
   display:inline;
