@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Calligraffitti');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
-html{
+@import 'article_style.css';
+@import 'colors-effects.css';
 
+html{
   width: 100%;
   height: 100%;
 }
@@ -10,33 +12,37 @@ body{
   width: 100%;
   height: 100%;
 }
+
+.nav-item, nav ul{
+  display:inline;
+}
+
+.nav-item.brand{
+  font-size: 25px;
+  border: none;
+}
+
+.nav-item {
+    margin: 0px 20px;
+    font-family: 'Calligraffitti', cursive;
+}
+
+.nav-item > a{
+  text-decoration:none;
+  color: unset;
+}
+.nav-item > a:visited{
+  text-decoration: none;
+  color: unset;
+}
+
 .custom-header{
   font-family: 'Lobster', cursive;
   font-size:60px;
   color:white;
 }
-.gray-bkgrnd{
-  background: rgba(255,255,255,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(235,235,235,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb', GradientType=1 );
-}
-.border{
-  border-style: 1px solid black;
-}
-.black-bkgrnd{
-  background: black;
 
-}
-.shadow-bkgrnd{
-  -webkit-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
-}
+
 .footer{
   position: absolute;
   bottom: 0;
@@ -44,46 +50,7 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
   height: 50px;
   font-family: 'Calligraffitti', cursive;
 }
-.article-link{
-  left: 15px;
-  display:inline;
-  color: darkgray;
-}
 
-.article-link{
-  display:inline;
-  right: 0;
-}
-
-.article-date *{
-  text-decoration: none;
-}
-.article-link a{
-}
-.article-date{
-  display:inline;
-}
-.article-date p{
-  position: absolute;
-  left: 20px;
-}
-.nav-custom{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-}
-.nav-custom a:active{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-}
-.nav-custom a:visited{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-  position: absolute;
-  width: 980px;
-}
 
 .clearfix:after {
   content: ".";
@@ -98,9 +65,7 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
   display: inline-block;
 }
 
-.no-hand{
-  cursor: pointer;
-}
+
 #bkgrnd-image{
   height: 100%;
   width: 100%;
