@@ -21,6 +21,12 @@ html, body {
   color: #fffed6;
 }
 
+.nav-item.brand a:hover{
+  font-size: 25px;
+  border: none;
+  text-shadow: 5px 5px 10px #000;
+}
+
 .nav-item {
     margin: 0px 20px;
     font-family: 'Calligraffitti', cursive;
@@ -40,6 +46,7 @@ html, body {
   text-decoration: none;
   color: unset;
 }
+
 
 header h1{
   font-family: 'Lobster', cursive;
