@@ -1,3 +1,21 @@
+<div id="login-content">
+  <header>
+    <h1>Simplicity RSS Reader</h1>
+  </header>
+  <main>
+    <% if flash.has_key?(:message) %>
+      <p><%= flash[:message] %></p>
+    <% end %>
+      <form method="post" action="/login">
+        <input type="text" name="username" placeholder="Username" size="50" required><br/><br/>
+        <input type="password" name="password" placeholder="Password" size="50" required><br/><br/>
+        <input type="submit" name="submit" value="Login" required>
+    </form>
+  </main>
+</div>
+
+
+<!--
 <div class="container text-center">
   <div class="row">
     <div class='col'>
@@ -21,3 +39,4 @@
     </div>
   </div>
 </div>
+-->

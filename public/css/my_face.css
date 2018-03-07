@@ -82,6 +82,11 @@ main{
   position:relative;
   top: 20%;
 }
+#login-content{
+  position: relative;
+  top: 15%;
+}
+
 #bkgrnd-image{
    background: url('../images/book-1149031_1920.jpg');
    width: 100%;
