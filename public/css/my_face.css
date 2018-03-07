@@ -11,6 +11,10 @@ html, body {
   width: 98%;
 }
 
+.secondary-font{
+  font-family: 'Calligraffitti', cursive;
+  color: white;
+}
 .nav-item, nav ul{
   display:inline;
 }
@@ -62,6 +66,9 @@ main{
   text-align:center;
 }
 
+#account-username{
+  font-size: 20px;
+}
 .footer{
   position: absolute;
   bottom: 0;
@@ -94,6 +101,11 @@ main{
   top: 15%;
 }
 
+#account-content{
+  position: relative;
+  top: 7%;
+}
+
 #bkgrnd-image{
    background: url('../images/book-1149031_1920.jpg');
    width: 100%;
@@ -106,6 +118,7 @@ main{
    left: 0;
    opacity: 0.8;
 }
+
 
 
 /*

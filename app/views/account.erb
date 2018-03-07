@@ -1,3 +1,21 @@
+<div id="account-content">
+  <header>
+    <h1>Simplicity RSS Reader</h1>
+  </header>
+  <main>
+    <form>
+      <p id="account-username" class="secondary-font" title="Contact admin@rss.com to change your username">Username: cdosrun01<p>
+      <input type="password" name="mah_pass" placeholder="Change Password" size="50" /><br/><br/>
+       <input type="email" name="mah_email" placeholder="Email" value="<%= @current_user.email %>" size="50"/><br/>
+      <br/><br/><br/><br/><br/><br/>
+      <input type="password" placeholder="Enter password to save changes" name="confirm" size="50" /><br/><br/>
+      <input type="submit" name="submit" value="Submit Changes" />
+    </form>
+  </main>
+</div>
+
+
+<!--
 <div class="container text-center text-white">
 <div class="row">
   <div class="col">
@@ -7,7 +25,7 @@
     <h2 class="custom-header">Account</h2>
     <div id="face">
       <form>
-        <p tooltip="Email -- admin@rss.com to change your username">Username: cdosrun01<p>
+        <p tooltip="Email  admin@rss.com to change your username">Username: cdosrun01<p>
         <input type="password" name="mah_pass" placeholder="Password"  /><br/><br/>
          <input type="email" name="mah_email" placeholder="Email" value="<%= @current_user.email %>"/><br/>
         <br/><br/><br/><br/><br/><br/>
@@ -20,3 +38,4 @@
   </div>
 </div>
 </div>
+-->
