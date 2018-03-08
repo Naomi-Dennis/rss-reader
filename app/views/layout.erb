@@ -9,12 +9,16 @@
 
  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+ <link rel="stylesheet" href="/css/article_style.css">
  <link rel="stylesheet" href="/css/my_face.css">
+
+
 <!--[if lt IE 9]>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
  <![endif]-->
 </head>
 <body class="">
+  <script src="js/main.js"></script>
     <div id="bkgrnd-image">
     </div>
 <!--  <img alt="" src="https://static.pexels.com/photos/61109/pexels-photo-61109.jpeg" id="bkgrnd-image" /> -->
@@ -56,6 +60,10 @@
      <div class="footer">
        <address>&copy;RSS Reader -- Naomi Dennis -- Flatiron Project 2018</address>
      </div>
+
+     <script>
+      console.log(document.getElementsByClassName("article-date").item(0).innerText)
+     </script>
 </div>
 </body>
 </html>

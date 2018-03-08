@@ -1,42 +1,37 @@
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <!-- Empty -->
-    </div>
-    <div class="col text-center" >
-      <h2 class="custom-header"> Feeds </h2>
-      <% if @articles.empty? %>
-        <p>You're feed is empty!</p>
-        <p><a href="/">Add a feed!</a></p>
-      <% else %>
-      <% @articles.each do | article | %>
-        <% article[:articles].each do | item | %>
-        <br/>
-        <div class="gray-bkgrnd border shadow-bkgrnd">
-          <div class="article-title">
-            <h4 ><%= item[:title] %></h4>
-          </div>
-          <br/>
-          <div class="article-description">
-            <p><%= item[:description] %></p>
-          </div>
-          <div class="article-date">
-            <p ><%= item[:date].to_s.split(" ").slice(0,4).join(" ") %></p>
-          </div>
-          <div class="article-link">
-           <a href="<%=item[:link]%>">Read More</a>
-         </div>
-        </div>
-        <br/>
-        <%  end %>
-      <% end %>
-
-      <% end %>
-    </div>
-    <div class="col-2">
-    </div>
+<% if @articles.empty? %>
+  <header>
+     <h1>Simplicity RSS Reader</h1>
+  </header>
+  <div class="secondary-font" id="feed-empty">
+     <p>You're feed is empty!</p>
+     <p><a href="/">Add a feed!</a></p>
   </div>
+<% else %>
+<div id="side">
+  <% @feeds.each do | feed | %>
+    <form action="/get_feed/<%= feed.id %>" method="post">
+      <input type="submit" value="<%= feed.name %>">
+    </form>
+  <% end %>
 </div>
+<div id="view-articles-scroll-wrapper">
+
+<div id="view-articles">
+  <h3 id="currently-viewing">Currently Viewing: <span id="currently-viewing-name"> <%= @articles[0].feed.name %> </span></h3>
+  <% @articles.each do | article | %>
+        <article>
+           <header class="article-title">
+              <h4><%= article.title %></h4>
+           </header>
+           <%if /[A-z]/.match( article.description ).nil?%>
+              <p class="article-description" style="text-align:center;">No description avilable.</p>
+          <% else %>
+            <p class="article-description"><%= article.description %></p>
+           <% end %>
+           <p class="article-date"><%= article.date.to_s.split(" ").slice(0,4).join(" ") %></p>
+           <a class="article-link" href="<%= article.link %>" target="_blank">Continue Reading</a>
+        </article>
+  <% end %>
+</div>
+</div>
+<% end %>

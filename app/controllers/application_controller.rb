@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     # Always store a hash. Remmeber, Sony 2012!!!
   @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
-      redirect '/feeds'
+      redirect '/feeds/0'
     else
       erb :forgot_pass
     end
@@ -52,7 +52,7 @@ class ApplicationController < Sinatra::Base
     # feeds page.
   @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
-      redirect '/feeds'
+      redirect '/feeds/0'
     else
       erb :login
     end
@@ -63,7 +63,7 @@ class ApplicationController < Sinatra::Base
     # Look for a safer way to do this. ************* DELETE
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
-      redirect '/feeds'
+      redirect '/feeds/0'
     else
       erb :signup
     end
@@ -77,18 +77,19 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
-  get '/feeds' do
+  get '/feeds/:id' do
     # The feeds page.
     # Future update: Allow the user to view all articles in all feeds by the endless page.. functionality thing. ****** DELETE
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
       @current_user.updateFeeds
+      @current_feed = Feed.find_by(id: params[:id]) if !@current_user.feeds.empty?
       @feeds = @current_user.feeds
-      @articles = []
-      @feeds.each do | feed |
-        item = {:name => feed.name, :articles => [feed.articles[0], feed.articles[1] ] }
-        @articles << item
-      end
+      @articles = @current_feed.articles;
+      # @feeds.each do | feed |
+      #   item = {:name => feed.name, :articles => [feed.articles[0], feed.articles[1] ] }
+      #   @articles << item
+      # end
       erb :view_feeds
     else
       flash[:message] = "You are not logged in."
@@ -96,6 +97,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/get_feed/:id' do
+    redirect "/feeds/#{params[:id]}"
+  end
   get '/delete_feed' do
 
     @current_user = User.getLoggedUser(session[:id])
@@ -161,7 +165,8 @@ class ApplicationController < Sinatra::Base
      else
        flash[:message] = "#{added_user_feed.name} is already in your feeds."
      end
-    redirect '/feeds'
+     last_feed = added_user_feed.id
+    redirect "/feeds/#{last_feed}"
   end
 
   post '/remove_feeds' do
