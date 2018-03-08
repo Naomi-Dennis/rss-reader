@@ -1,0 +1,8 @@
+<h2>Remove Feed</h2>
+
+<form action="/remove_feeds" method="post">
+<% @feeds.each do | feed | %>
+  <input type="checkbox" name="selected_feeds[]" value="<%= feed.id %>">&nbsp;&nbsp;<%= feed.name %> </input><br/><br/>
+<% end %>
+  <input type="submit" name="submit" value="Delete" />
+</form>
