@@ -1,23 +1,18 @@
+<div id="home-content">
+<header>
+  <h1>Simplicity RSS Reader</h1>
+</header>
+<br/>
+<main>
+<% if flash.key?("message") %>
+  <p><%= flash[:message] %></p>
+<% end %>
+  <form method="post" action="/process_feeds">
+    <input type="text" size="150"   placeholder="Enter feed link" name="feed" />
+    <br/><br/>
+    <input type="submit" name="submit" value="Open Feed" />
+  </form>
 
-<br/><br/><br/>
-<div class="container">
-  <div class="row">
-    <div class="col ">
-    </div>
-    <div class="col text-center">
-      <br/>
-        <h1 class="custom-header">Simplicity : RSS Reader</h1>
-        <br/>
-        <% if flash.key?("message") %>
-          <p><%= flash[:message] %></p>
-        <% end %>
-        <form method="post" action="/process_feeds">
-        <input type="text" size="100" style='text-align:center;'  placeholder="Enter feed link" name="feed" />
-        <br/><br/>
-        <input type="submit" name="submit" value="Open Feed" />
-      </form>
-    </div>
-    <div class="col">
-    </div>
-  </div>
+</main>
+
 </div>

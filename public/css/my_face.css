@@ -1,90 +1,82 @@
 @import url('https://fonts.googleapis.com/css?family=Calligraffitti');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
+@import 'colors-effects.css';
+
 html{
-
-  width: 100%;
-  height: 100%;
+  background-color: #000;
+}
+html, body {
+  height: 98%;
+  width: 98%;
 }
 
-body{
-  width: 100%;
-  height: 100%;
+.secondary-font{
+  font-family: 'Calligraffitti', cursive;
+  color: white;
 }
-.custom-header{
+.nav-item, nav ul{
+  display:inline;
+}
+
+.nav-item.brand{
+  font-size: 25px;
+  border: none;
+  color: #fffed6;
+}
+
+.nav-item.brand a:hover{
+  font-size: 25px;
+  border: none;
+  text-shadow: 5px 5px 10px #000;
+}
+
+.nav-item {
+    margin: 0px 20px;
+    font-family: 'Calligraffitti', cursive;
+    color: white;
+}
+
+.nav-item > a{
+  text-decoration:none;
+  color: unset;
+}
+.nav-item > a:hover{
+  text-decoration:none;
+  color: unset;
+  border-bottom: 1px solid white;
+}
+.nav-item > a:visited{
+  text-decoration: none;
+  color: unset;
+}
+
+
+header h1{
   font-family: 'Lobster', cursive;
   font-size:60px;
-  color:white;
+  text-align: center;
+  color: #fffed6;
+  text-shadow: 5px 5px 10px #000;
 }
-.gray-bkgrnd{
-  background: rgba(255,255,255,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(235,235,235,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb', GradientType=1 );
-}
-.border{
-  border-style: 1px solid black;
-}
-.black-bkgrnd{
-  background: black;
 
+main{
+  width: inherit ;
+  margin: 0 auto;
+  text-align:center;
 }
-.shadow-bkgrnd{
-  -webkit-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
-box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
+
+#account-username{
+  font-size: 20px;
 }
 .footer{
   position: absolute;
   bottom: 0;
-  width: 100%;
-  height: 50px;
+  text-align:right;
+  width: inherit;
   font-family: 'Calligraffitti', cursive;
-}
-.article-link{
-  left: 15px;
-  display:inline;
-  color: darkgray;
+  color: white;
 }
 
-.article-link:active{
-  display:inline;
-  color: darkgray;
-}
-
-.article-date *{
-  text-decoration: none;
-}
-.article-link a{
-  display:inline;
-}
-.article-date{
-  display:inline;
-}
-.article-date p{
-  position: absolute;
-  left: 20px;
-}
-.nav-custom{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-}
-.nav-custom a:active{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-}
-.nav-custom a:visited{
-  font-family: 'Calligraffitti', cursive;
-  background: transparent !important;
-  color:white;
-  position: absolute;
-  width: 980px;
-}
 
 .clearfix:after {
   content: ".";
@@ -99,18 +91,66 @@ box-shadow: 6px 10px 41px 0px rgba(0,0,0,0.75);
   display: inline-block;
 }
 
-.no-hand{
-  cursor: pointer;
+#home-content{
+  position:relative;
+  top: 20%;
 }
+#login-content{
+  position: relative;
+  top: 15%;
+}
+
+#account-content{
+  position: relative;
+  top: 7%;
+}
+
 #bkgrnd-image{
-  height: 100%;
-  width: 100%;
-  position: absolute;
+   background: url('../images/book-1149031_1920.jpg');
+   width: 100%;
+   height: 100%;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   position: absolute;
+   z-index: -1;
+   top: 0;
+   left: 0;
+   opacity: 0.8;
 }
+
+
+
+/*
+
+#bkgrnd-image{
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  z-index: -100;
+  margin: 0 0;
+}
+#bkgrnd-image img{
+  width: inherit;
+  height: inherit;
+}
+*/
 
 .multiple_page_div{
   height: 550px;
   width: 100%
+}
+
+input[type="submit"]{
+  text-decoration: none;
+  background-color: transparent;
+  font-family: 'Calligraffitti', cursive;
+  color: white;
+  border: none;
+  font-size: 30px;
+}
+
+input[type="submit"]:hover{
+  border-bottom: 1px solid white;
 }
 
 input[type="text"] {
@@ -120,6 +160,7 @@ input[type="text"] {
     -khtml-border-radius: 10px; /* KHTML */
     border-radius: 10px; /* CSS3 */
     text-align: center;
+
 }
 
 input[type="password"] {

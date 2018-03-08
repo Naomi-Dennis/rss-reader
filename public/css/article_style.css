@@ -1,0 +1,92 @@
+/*
+  Article Style
+*/
+article{
+  padding: 0 15px;
+  margin-top: 15px;
+  background-color: #fff;
+  box-shadow: 5px 5px 10px #000;
+  font-family: 'Courier New';
+  color: black;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.article-title{
+  text-align: center;
+  font-size: 20px;
+}
+.article-description{
+  font-size: 15px;
+}
+
+.article-date{
+  display:inline-block;
+  text-decoration: none;
+  width: 40%;
+}
+.article-link{
+  display:inline-block;
+  width: 55%;
+  text-align: right;
+}
+.article-link a {
+  display:inline-block;
+  width: 55%;
+  text-align: right;
+  color: blue;
+}
+.article-link a:visited{
+  display:inline-block;
+  width: 55%;
+  text-align: right;
+  color: blue;
+}
+.article-link a:active{
+  display:inline-block;
+  width: 55%;
+  text-align: right;
+  color: blue;
+}
+#view-articles-scroll-wrapper{
+  height: 95%;
+  width: 100%;
+  overflow: hidden;
+  margin-left: 20px;
+}
+#view-articles{
+  height: inherit;
+  width: inherit;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 20px;
+}
+
+
+#currently-viewing{
+  text-align: center;
+  font-family: 'Calligraffitti', cursive;
+  color: white;
+}
+
+#currently-viewing-name{
+  color: #fffed6;
+}
+
+#side{
+  position:absolute;
+  float: left;
+  width: 10%;
+  padding-left: 1px;
+  top: 15%;
+  color: #fffed6;
+}
+
+#side  input[type='submit']{
+  font-size: 15px;
+  width: 100%;
+  white-space: normal;
+  text-shadow: 5px 5px 10px #000;
+  font-family: "Courier New";
+  margin-top: 25px;
+}

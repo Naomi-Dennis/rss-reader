@@ -29,15 +29,9 @@ class Feed < ActiveRecord::Base
     feed = RSS::Parser.parse(data)
     self[:name] = feed.channel.title
     feed.channel.items.collect do | item |
-      if /<img/.match(item.description)
-        image_data = item.description.split(">")
-        item.description = image_data[1]
-        image_data = image_data[0] + ">"
-        image_data.insert(image_data.index('class') + 'class='.size, 'img-thumbnail')
-        new_article = Article.create(title: item.title, description: item.description, image: image_data, link: item.link, date: item.date)
-      else
-        new_article = Article.create(title: item.title, description: item.description, image: image_data, link: item.link, date: item.date)
-      end
+        parse_description = Nokogiri::HTML(item.description).css("body").text
+        item.date = Time.now if item.date.nil?
+        new_article = Article.create(title: item.title, description: parse_description , image: nil, link: item.link, date: item.date)
       new_article
     end
   end
