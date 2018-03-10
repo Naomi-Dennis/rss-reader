@@ -3,7 +3,7 @@
 
 1. Download Project
 2. Run 'bundle install'
-3. Run shotgun config.ru 
+3. Run rackup config.ru
 
 
 ## Dependencies
