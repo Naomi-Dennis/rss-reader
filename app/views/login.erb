@@ -3,8 +3,8 @@
     <h1>Simplicity RSS Reader</h1>
   </header>
   <main>
-    <% if flash.has_key?(:message) %>
-      <p><%= flash[:message] %></p>
+    <% if flash.key?(:message) %>
+      <p class="flash secondary font"><%= flash[:message] %></p>
     <% end %>
       <form method="post" action="/login">
         <input type="text" name="username" placeholder="Username" size="50" required><br/><br/>

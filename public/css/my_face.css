@@ -10,6 +10,9 @@ html, body {
   width: 98%;
 }
 
+.flash-message{
+  font-size: 32px;
+}
 .secondary-font{
   font-family: 'Calligraffitti', cursive;
   color: white;

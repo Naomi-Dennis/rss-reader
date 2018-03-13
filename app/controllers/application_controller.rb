@@ -82,6 +82,7 @@ class ApplicationController < Sinatra::Base
     # Future update: Allow the user to view all articles in all feeds by the endless page.. functionality thing. ****** DELETE
     @current_user = User.getLoggedUser(session[:id])
     if !@current_user.nil?
+     if !@current_user.feeds.empty?
       @current_user.updateFeeds
       @current_feed = Feed.find_by(id: params[:id]) if !@current_user.feeds.empty?
       @feeds = @current_user.feeds
@@ -90,7 +91,11 @@ class ApplicationController < Sinatra::Base
       #   item = {:name => feed.name, :articles => [feed.articles[0], feed.articles[1] ] }
       #   @articles << item
       # end
-      erb :view_feeds
+        erb :view_feeds
+      else
+        flash[:message] = "Your feed is empty!\n\nAdd a feed below!"
+        redirect '/'
+      end
     else
       flash[:message] = "You are not logged in."
       redirect '/login'
@@ -116,8 +121,9 @@ class ApplicationController < Sinatra::Base
 ## Post/Fetch/Delete/etc Request
 
   post '/login' do
-    logged_user = User.find_by(username: params['username'], password: params['password'])
-    if logged_user.nil?
+    logged_user = User.find_by(username: params['username'])
+
+    if logged_user.nil? || logged_user.password != params[:password]
       flash[:message] = "Username or Password Not Found"
       redirect '/login'
     else
@@ -138,7 +144,9 @@ class ApplicationController < Sinatra::Base
       flash[:message] = "Username taken"
       redirect '/signup'
     else
-      new_user = User.create(username: name, password: password, email:email)
+      new_user = User.create(username: name, email:email)
+      new_user.password = password;
+      new_user.save!;
       session[:id] = new_user.id
       redirect '/'
     end

@@ -30,7 +30,11 @@
               <a href="/">Simplicity RSS Reader</a>
           </li>
           <li class="nav-item">
-            <a class="" href="/feeds/<%= @current_user.feeds.first.id %>">View Feeds</a>
+            <% if @current_user.feeds.empty? %>
+              <a class="" href="/feeds/none"%>View Feeds</a>
+            <% else %>
+              <a class="" href="/feeds/<%= @current_user.feeds.first.id %>">View Feeds</a>
+            <% end %>
           </li>
           <li class="nav-item">
             <a class="" href="/account">My Account</a>
