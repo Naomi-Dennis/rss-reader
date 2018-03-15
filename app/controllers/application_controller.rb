@@ -105,20 +105,27 @@ class ApplicationController < Sinatra::Base
   post '/get_feed/:id' do
     redirect "/feeds/#{params[:id]}"
   end
-  get '/delete_feed' do
-
-    @current_user = User.getLoggedUser(session[:id])
-    if !@current_user.nil?
-        @feeds = @current_user.feeds
-        erb :remove_feed
-    else
-      flash[:message] = "You are not logged in."
-      redirect '/login'
-    end
-
-  end
 
 ## Post/Fetch/Delete/etc Request
+
+  patch '/update_account' do
+      new_password = params[:password]
+      password = params[:confirm_password]
+      email = params[:email]
+
+      logged_user = User.find_by(email: email)
+
+      if !logged_user.nil? && logged_user.password == password
+        logged_user.email = email;
+        logged_user.password = new_password if new_password != password
+        logged_user.save!
+        flash[:message] = "Account updated"
+      else
+        flash[:message] = "Password Incorrect"
+       end
+
+       redirect '/account'
+  end
 
   post '/login' do
     logged_user = User.find_by(username: params['username'])
@@ -152,7 +159,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/process_feeds' do
+  patch '/process_feeds' do
     # Processes feeds by saving each article as an article object and assigning it to a Feed object.
     # The feed is then assigned to the user.
     # NOTE: A user can have multiple feeds and feeds can have multiple users.
@@ -177,7 +184,7 @@ class ApplicationController < Sinatra::Base
     redirect "/feeds/#{last_feed}"
   end
 
-  post '/remove_feeds' do
+  delete '/remove_feeds' do
     # Removes a certain feed from the user's feed list.
     feeds = params["selected_feeds"]
     @current_user = User.getLoggedUser(session[:id])

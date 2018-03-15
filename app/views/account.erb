@@ -3,12 +3,16 @@
     <h1>Simplicity RSS Reader</h1>
   </header>
   <main>
-    <form>
-      <p id="account-username" class="secondary-font" title="Contact admin@rss.com to change your username">Username: cdosrun01<p>
-      <input type="password" name="mah_pass" placeholder="Change Password" size="50" /><br/><br/>
-       <input type="email" name="mah_email" placeholder="Email" value="<%= @current_user.email %>" size="50"/><br/>
+    <% if flash.key?(:message) %>
+      <p class="flash-message secondary-font" ><%= flash[:message] %></p>
+    <% end %>
+    <form action="/update_account" method="post">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <p id="account-username" class="secondary-font" title="Contact admin@rss.com to change your username">Username: <%= @current_user.username %><p>
+      <input type="password" name="password" placeholder="Change Password" size="50" /><br/><br/>
+       <input type="email" name="email" placeholder="Email" value="<%= @current_user.email %>" size="50"/><br/>
       <br/><br/><br/><br/><br/><br/>
-      <input type="password" placeholder="Enter password to save changes" name="confirm" size="50" /><br/><br/>
+      <input type="password" placeholder="Enter current password to save changes" name="confirm_password" size="50" /><br/><br/>
       <input type="submit" name="submit" value="Submit Changes" />
     </form>
   </main>
