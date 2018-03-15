@@ -1,27 +1,31 @@
-<div id="home-content">
-<header>
-  <h1>Simplicity RSS Reader</h1>
-</header>
+<div id="edit_feed_content">
 <main>
+<section id="add_feed">
+  <h2 class="secondary-header">Add Feed</h2>
 <% if flash.key?(:message) %>
   <p class="flash-message secondary-font" ><%= flash[:message] %></p>
 <% end %>
-  <form method="post" action="/process_feeds">
+  <form method="post" action="/add_feed">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <input type="text" size="150"   placeholder="Enter feed link" name="feed" />
     <br/><br/>
-    <input type="submit" name="submit" value="Open Feed" />
+    <input type="submit" name="submit" value="Submit" id="add_feed_btn">
   </form>
 
-</main>
-
-</div>
-
-<h2>Remove Feed</h2>
-
-<form action="/remove_feeds" method="post">
-<% @feeds.each do | feed | %>
-  <input type="checkbox" name="selected_feeds[]" value="<%= feed.id %>">&nbsp;&nbsp;<%= feed.name %> </input><br/><br/>
+</section>
+<% if !@feeds.empty? %>
+<section id="remove_feed">
+  <h2 class="secondary-header">Remove Feed</h2>
+  <form action="/remove_feeds" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+      <div class="feeds_selection">
+    <% @feeds.each do | feed | %>
+      <input type="checkbox" name="selected_feeds[]" value="<%= feed.id %>"></input><label>&nbsp;&nbsp;<%= feed.name %></label><br/><br/>
+    <% end %>
+    </div>
+    <input type="submit" name="submit" value="Delete" id="delete_feed_btn" />
+  </form>
+</section>
 <% end %>
-  <input type="submit" name="submit" value="Delete" />
-</form>
+  </main>
+</div>

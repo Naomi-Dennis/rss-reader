@@ -12,11 +12,6 @@
     <form action="/get_feed/<%= feed.id %>" method="post">
       <input type="submit" value="<%= feed.name %>">
     </form>
-
-    <form action="/feed/:id" method="post">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete Feed" name="Delete <%= feed.name %>">
-    </form>
   <% end %>
 </div>
 <div id="view-articles-scroll-wrapper">

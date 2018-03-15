@@ -77,6 +77,17 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  get '/edit_feeds' do
+    @current_user = User.getLoggedUser(session[:id])
+    if !@current_user.nil?
+      @feeds = @current_user.feeds ;
+      erb :edit_feeds
+    else
+      flash[:message] = "You are not logged in."
+      redirect '/login'
+    end
+  end
+
   get '/feeds/:id' do
     # The feeds page.
     # Future update: Allow the user to view all articles in all feeds by the endless page.. functionality thing. ****** DELETE
@@ -181,7 +192,7 @@ class ApplicationController < Sinatra::Base
        flash[:message] = "#{added_user_feed.name} is already in your feeds."
      end
      last_feed = added_user_feed.id
-    redirect "/feeds/#{last_feed}"
+     redirect "/feeds/#{last_feed}"
   end
 
   delete '/remove_feeds' do
@@ -191,7 +202,29 @@ class ApplicationController < Sinatra::Base
     @current_user.feeds = @current_user.feeds.reject do | feed |
       feeds.include?(feed.id.to_s)
     end
+    @current_user.save!
     redirect '/feeds'
+  end
+
+  patch '/add_feed' do
+    url = params[:feed]
+    added_user_feed = Feed.find_by(url: url)
+    if added_user_feed.nil?
+      added_user_feed = Feed.create(url: url)
+      added_user_feed.articles << added_user_feed.parse_articles
+    else
+        added_user_feed.updateFeed
+     end
+    added_user_feed.save
+    user = User.find_by(id: session[:id])
+     if !user.feeds.include?(added_user_feed)
+       user.feeds << added_user_feed
+        user.save
+     else
+       flash[:message] = "#{added_user_feed.name} is already in your feeds."
+     end
+     last_feed = added_user_feed.id
+     redirect "/edit_feeds"
   end
 
 end
