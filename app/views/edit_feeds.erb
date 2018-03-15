@@ -1,0 +1,27 @@
+<div id="home-content">
+<header>
+  <h1>Simplicity RSS Reader</h1>
+</header>
+<main>
+<% if flash.key?(:message) %>
+  <p class="flash-message secondary-font" ><%= flash[:message] %></p>
+<% end %>
+  <form method="post" action="/process_feeds">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="text" size="150"   placeholder="Enter feed link" name="feed" />
+    <br/><br/>
+    <input type="submit" name="submit" value="Open Feed" />
+  </form>
+
+</main>
+
+</div>
+
+<h2>Remove Feed</h2>
+
+<form action="/remove_feeds" method="post">
+<% @feeds.each do | feed | %>
+  <input type="checkbox" name="selected_feeds[]" value="<%= feed.id %>">&nbsp;&nbsp;<%= feed.name %> </input><br/><br/>
+<% end %>
+  <input type="submit" name="submit" value="Delete" />
+</form>
