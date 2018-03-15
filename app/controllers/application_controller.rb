@@ -86,7 +86,7 @@ class ApplicationController < Sinatra::Base
       @current_user.updateFeeds
       @current_feed = Feed.find_by(id: params[:id]) if !@current_user.feeds.empty?
       @feeds = @current_user.feeds
-      @articles = @current_feed.articles;
+      @current_user.feeds.empty? ? @articles = [] : @articles = @current_feed.articles;
       # @feeds.each do | feed |
       #   item = {:name => feed.name, :articles => [feed.articles[0], feed.articles[1] ] }
       #   @articles << item

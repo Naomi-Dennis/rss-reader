@@ -30,11 +30,20 @@
               <a href="/">Simplicity RSS Reader</a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
             <% if @current_user.feeds.empty? %>
               <a class="" href="/feeds/none"%>View Feeds</a>
             <% else %>
               <a class="" href="/feeds/<%= @current_user.feeds.first.id %>">View Feeds</a>
             <% end %>
+=======
+	    <% if @current_user.feeds.empty? %>
+ 		<a class="" href="/feeds/none">View Feeds</a>
+            <% else %>
+          	  <a class="" href="/feeds/<%= @current_user.feeds.first.id %>">View Feeds</a>
+	    <% end %> 
+
+>>>>>>> 168dca1cbb4be064f871024afc2234455c6db98c
           </li>
           <li class="nav-item">
             <a class="" href="/account">My Account</a>
