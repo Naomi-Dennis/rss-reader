@@ -13,4 +13,6 @@ end
 
 
 use Rack::MethodOverride
+use UsersController
+use FeedsController
 run ApplicationController

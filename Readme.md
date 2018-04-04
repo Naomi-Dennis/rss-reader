@@ -1,4 +1,4 @@
-## How to Run This Site 
+## How to Run This Site
 
 
 1. Download Project
@@ -7,4 +7,4 @@
 
 
 ## Dependencies
-mysqli server 
+mysqli server

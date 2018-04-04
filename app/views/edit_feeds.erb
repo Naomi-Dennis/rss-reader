@@ -17,7 +17,7 @@
 <section id="remove_feed">
   <h2 class="secondary-header">Remove Feed</h2>
   <form action="/remove_feeds" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
       <div class="feeds_selection">
     <% @feeds.each do | feed | %>
       <input type="checkbox" name="selected_feeds[]" value="<%= feed.id %>"></input><label>&nbsp;&nbsp;<%= feed.name %></label><br/><br/>
